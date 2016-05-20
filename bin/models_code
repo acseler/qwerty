@@ -1,0 +1,22 @@
+rails g model Country    name:string
+rails g model Address    address:string zipcode:string city:string phone:string country:references
+rails g model Author     first_name:string last_name:string biography:text
+rails g model Category   title:string
+rails g model Book       title:string description:text price:decimal{7-2} stock:integer category:references author:references
+rails g model Customer   email:string password:string first_name:string last_name:string
+rails g model Rating     review:text rating:integer customer:references book:references
+rails g model CreditCard number:string cvv:string expiration_month:integer expiration_year:integer first_name:string last_name:string customer:references
+rails g model Order      total_price:decimal{7-2} completed_date:datetime state:string customer:references credit_card:references billing_address_id:integer shipping_address_id:integer
+rails g model OrderItem  price:decimal{7-2} quantity:integer book:references order:references
+rails d model Country
+rails d model Address
+rails d model Author
+rails d model Category
+rails d model Book
+rails d model Customer
+rails d model Rating
+rails d model CreditCard
+rails d model Order
+rails d model OrderItem
+
+
