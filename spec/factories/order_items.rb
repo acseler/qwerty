@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :order_item do
-    price "9.99"
-    quantity 1
-    book nil
-    order nil
+    price { FFaker.numerify('###.##') }
+    quantity { rand(1..9) }
+    book { FactoryGirl.create(:book) }
+    order { FactoryGirl.create(:order) }
   end
 end

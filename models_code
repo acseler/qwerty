@@ -19,4 +19,12 @@ rails d model CreditCard
 rails d model Order
 rails d model OrderItem
 
+    to order migration
+    add_foreign_key :orders, :addresses, { column: :billing_address_id }
+    add_foreign_key :orders, :addresses, { column: :shipping_address_id }
+    order model
+    belongs_to :billing_address, class_name: 'Address', foreign_key: 'billing_address_id'
+    belongs_to :shipping_address, class_name: 'Address', foreign_key: 'shipping_address_id'
 
+
+new_order(total_price: 777, completed_date: Time.now)

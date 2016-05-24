@@ -5,7 +5,17 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-Country.create(name: 'Ukraine')
-Address.create(address: 'Street1', zipcode: '1234', city: 'Ololo', phone: '123123')
-Address.create(address: 'Street2', zipcode: '5678', city: 'Ofofo', phone: '456456')
-Order.create(total_price: 1.22, completed_date: Time.now)
+FactoryGirl.create(:country)
+FactoryGirl.create(:address)
+FactoryGirl.create(:order)
+FactoryGirl.create(:book)
+FactoryGirl.create(:category)
+FactoryGirl.create(:author)
+FactoryGirl.create(:rating)
+FactoryGirl.create(:credit_card)
+FactoryGirl.create(:order_item)
+FactoryGirl.create(:customer)
+
+
+
+

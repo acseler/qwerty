@@ -37,6 +37,7 @@ group :development, :test do
   gem 'byebug'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
+  gem 'ffaker'
 end
 
 group :development do
@@ -52,7 +53,6 @@ group :development do
 end
 
 group :test do
-  gem 'ffaker'
   gem 'database_cleaner'
   gem 'shoulda-matchers', require: false
 end

@@ -100,13 +100,13 @@ ActiveRecord::Schema.define(version: 20160520134955) do
   create_table "orders", force: :cascade do |t|
     t.decimal  "total_price",         precision: 7, scale: 2
     t.datetime "completed_date"
-    t.string   "state"
+    t.string   "state",                                       default: "in progress"
     t.integer  "customer_id"
     t.integer  "credit_card_id"
     t.integer  "billing_address_id"
     t.integer  "shipping_address_id"
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
+    t.datetime "created_at",                                                          null: false
+    t.datetime "updated_at",                                                          null: false
   end
 
   add_index "orders", ["credit_card_id"], name: "index_orders_on_credit_card_id", using: :btree
@@ -130,6 +130,8 @@ ActiveRecord::Schema.define(version: 20160520134955) do
   add_foreign_key "credit_cards", "customers"
   add_foreign_key "order_items", "books"
   add_foreign_key "order_items", "orders"
+  add_foreign_key "orders", "addresses", column: "billing_address_id"
+  add_foreign_key "orders", "addresses", column: "shipping_address_id"
   add_foreign_key "orders", "credit_cards"
   add_foreign_key "orders", "customers"
   add_foreign_key "ratings", "books"
