@@ -98,7 +98,7 @@ ActiveRecord::Schema.define(version: 20160520134955) do
   add_index "order_items", ["order_id"], name: "index_order_items_on_order_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
-    t.decimal  "total_price",         precision: 7, scale: 2
+    t.decimal  "total_price",         precision: 7, scale: 2, default: 0.0
     t.datetime "completed_date"
     t.string   "state",                                       default: "in progress"
     t.integer  "customer_id"

@@ -1,7 +1,7 @@
 class CreateOrders < ActiveRecord::Migration
   def change
     create_table :orders do |t|
-      t.decimal :total_price, precision: 7, scale: 2
+      t.decimal :total_price, precision: 7, scale: 2, default: 0.0
       t.datetime :completed_date
       t.string :state, default: 'in progress'
       t.references :customer, index: true, foreign_key: true

@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Customer, type: :model do
+  subject(:customer) { FactoryGirl.create(:customer) }
+
   %i(email password first_name last_name).each do |symb|
     it { should have_db_column(symb) }
     it { should validate_presence_of(symb) }
@@ -21,5 +23,24 @@ RSpec.describe Customer, type: :model do
 
   it 'has valid factory' do
     expect(FactoryGirl.build(:customer)).to be_valid
+  end
+
+  context '#new_order' do
+    it 'creates new order' do
+      expect { customer.new_order(completed_date: Time.now) }
+          .to change { customer.orders.size }.by(1)
+    end
+  end
+
+  context '#current_order' do
+    it "returns blank if there is no orders with 'in progress' state" do
+      expect(customer.current_order).to be_blank
+    end
+
+    it "returns order with 'in progress' state" do
+      order = customer.new_order(completed_date: Time.now)
+      expect(order).to respond_to(:total_price, :completed_date, :state)
+      expect(order.state).to eq('in progress')
+    end
   end
 end

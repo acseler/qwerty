@@ -1,5 +1,4 @@
 class Order < ActiveRecord::Base
-  before_validation :assign_total_price, on: :create, unless: :total_price
   belongs_to :customer
   belongs_to :credit_card
   has_many :order_items
@@ -7,10 +6,15 @@ class Order < ActiveRecord::Base
   belongs_to :shipping_address, class_name: 'Address', foreign_key: 'shipping_address_id'
   validates :total_price, :completed_date, :state, presence: true
   validates :state, inclusion: { in: %w(in\ progress completed shipped) }
+  before_save :assign_total_price
 
   def add_book(book, quantity)
-    order_items.create(price: book.price, quantity: quantity, book: book)
-    assign_total_price
+    item = order_items.find_by(book: book)
+    if item
+      item.update(quantity: item.quantity + quantity)
+    else
+      order_items.create(price: book.price, quantity: quantity, book: book)
+    end
   end
 
   private

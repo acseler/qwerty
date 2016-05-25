@@ -53,6 +53,7 @@ group :development do
 end
 
 group :test do
+  gem 'shoulda-callback-matchers', '~> 1.1', '>= 1.1.4'
   gem 'database_cleaner'
   gem 'shoulda-matchers', require: false
 end

@@ -11,8 +11,7 @@ class Customer < ActiveRecord::Base
   end
 
   def current_order
-    # orders.find_by_state(IN_PROGRESS)
-    orders.where('state = ?', IN_PROGRESS)
+    orders.find_by_state(IN_PROGRESS)
   end
 
 end
