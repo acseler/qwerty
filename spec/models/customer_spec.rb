@@ -13,6 +13,7 @@ RSpec.describe Customer, type: :model do
   end
 
   it { should validate_uniqueness_of(:email) }
+
   %w(vasya@namatrase.com ololo1@gmail.com).each do |line|
     it { should allow_value(line).for(:email) }
   end
