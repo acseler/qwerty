@@ -20,7 +20,7 @@ class Order < ActiveRecord::Base
   private
 
   def assign_total_price
-    self.total_price = order_items.inject(0) { |s, i| s + i.price * i.quantity }
+    self.total_price = order_items.sum('price * quantity')
   end
 
 end
