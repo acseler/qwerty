@@ -9,8 +9,7 @@ class Order < ActiveRecord::Base
   before_save :assign_total_price
 
   def add_book(book, quantity)
-    item = order_items.find_by(book: book)
-    if item
+    if item = order_items.find_by_book_id(book)
       item.update(quantity: item.quantity + quantity)
     else
       order_items.create(price: book.price, quantity: quantity, book: book)
@@ -22,5 +21,4 @@ class Order < ActiveRecord::Base
   def assign_total_price
     self.total_price = order_items.sum('price * quantity')
   end
-
 end
