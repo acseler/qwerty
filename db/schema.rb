@@ -115,10 +115,11 @@ ActiveRecord::Schema.define(version: 20160520134955) do
   create_table "ratings", force: :cascade do |t|
     t.text     "review"
     t.integer  "rating"
+    t.boolean  "approved",    default: false
     t.integer  "customer_id"
     t.integer  "book_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   add_index "ratings", ["book_id"], name: "index_ratings_on_book_id", using: :btree

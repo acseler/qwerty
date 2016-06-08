@@ -16,6 +16,10 @@ class Order < ActiveRecord::Base
     end
   end
 
+  def state_enum
+    %w(in\ progress completed shipped)
+  end
+
   private
 
   def assign_total_price
